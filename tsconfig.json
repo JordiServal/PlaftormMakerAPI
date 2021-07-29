@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES5",
+    "removeComments": true,
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "rootDir": "./src/",
+    "outDir": "./dist",
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "files": ["src/index.ts"]
+}
