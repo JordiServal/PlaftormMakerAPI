@@ -21,7 +21,6 @@ export class Server {
         this.app.use(json());
         this.app.use(urlencoded({ extended: false }));
         this.app.use(cookieParser())
-        this.app.use(this.ignoreCORS);
 
         this.apiRouter = Express.Router();
         this.route();
@@ -68,15 +67,6 @@ export class Server {
         } catch (e) {
             res.sendStatus(500);
         }
-    }
-
-    private ignoreCORS = (req: Request, res: Response, next: NextFunction) => {
-        res.header('Access-Control-Allow-Credentials', 'true');
-        res.header('Access-Control-Allow-Origin', process.env.WEBSITE_URL);
-        res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, OPTIONS, DELETE')
-        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-        console.log(GetDateFormat(), '>', req.method, req.path);
-        next();
     }
 
 }
