@@ -50,7 +50,7 @@ export class Server {
 
         // api/...
         this.apiRouter.get('/login', () => console.log);
-        this.apiRouter.get('/map', GetMap);
+        this.apiRouter.get('/map/:name', GetMap);
     }
 
     private mongoConnection = async (req: Request, res: Response, next: NextFunction) => {

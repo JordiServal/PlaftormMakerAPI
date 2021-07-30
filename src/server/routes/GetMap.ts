@@ -6,8 +6,8 @@ import {
 
 export const GetMap = async (req: Request, res: Response, next: NextFunction) => {
     const mongo = res.locals.mongo;
+    const { name } = req.params;
 
-    const map = await mongo.get('maps', 'name', 'Test')
-    console.log(map);
+    const map = await mongo.get('maps', 'name', name)
     res.json(map)
 }
