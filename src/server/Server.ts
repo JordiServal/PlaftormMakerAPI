@@ -1,11 +1,11 @@
 
 import * as Express from 'express';
-import {GetLogin} from "./routes/GetLogin";
+import { GetMap } from "./routes/GetMap";
 import * as cookieParser from 'cookie-parser';
 import {NextFunction, Request, Response} from "express";
-import {Utils} from "./utils/Utils";
-import VerifyHash = Utils.VerifyHash;
-import GetDateFormat = Utils.GetDateFormat;
+// import {Utils} from "./utils/Utils";
+// import VerifyHash = Utils.VerifyHash;
+// import GetDateFormat = Utils.GetDateFormat;
 import * as Mongo from 'mongo-redux'
 import {urlencoded, json} from "body-parser";
 
@@ -49,7 +49,8 @@ export class Server {
         this.app.use('/api', this.apiRouter);
 
         // api/...
-        this.apiRouter.get('/login',                     () => console.log);
+        this.apiRouter.get('/login', () => console.log);
+        this.apiRouter.get('/map', GetMap);
     }
 
     private mongoConnection = async (req: Request, res: Response, next: NextFunction) => {
@@ -57,16 +58,16 @@ export class Server {
         next();
     }
 
-    private isAuth = async (req: Request, res: Response, next: NextFunction) => {
-        const { user_id, user_token } = req.cookies;
-        if(!user_id || !user_token) return res.sendStatus(401);
-        try {
-            res.locals.user = await this.mongo.get('users', 'user_id', user_id);
-            if(!VerifyHash(user_token, res.locals.user.user_token)) return res.sendStatus(401);
-            next()
-        } catch (e) {
-            res.sendStatus(500);
-        }
-    }
+    // private isAuth = async (req: Request, res: Response, next: NextFunction) => {
+    //     const { user_id, user_token } = req.cookies;
+    //     if(!user_id || !user_token) return res.sendStatus(401);
+    //     try {
+    //         res.locals.user = await this.mongo.get('users', 'user_id', user_id);
+    //         if(!VerifyHash(user_token, res.locals.user.user_token)) return res.sendStatus(401);
+    //         next()
+    //     } catch (e) {
+    //         res.sendStatus(500);
+    //     }
+    // }
 
 }

@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development nodemon",
+    "dev": "nodemon",
     "start": "ts-node ./src/index.ts",
     "build": "tsc-bundle tsconfig.json",
     "postbuild": "cp package.json dist/package.json",
