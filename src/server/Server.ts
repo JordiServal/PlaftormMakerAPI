@@ -54,7 +54,7 @@ export class Server {
     }
 
     private mongoConnection = async (req: Request, res: Response, next: NextFunction) => {
-        console.log(`[+] ${req.path}`)
+        console.log('>', req.method, req.path)
         res.locals.mongo = this.mongo;
         next();
     }
